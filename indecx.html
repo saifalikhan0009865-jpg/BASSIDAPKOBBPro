@@ -1,0 +1,180 @@
+;<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CapCut Premium Download</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #2c3e50 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 340px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .app-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            object-fit: cover;
+        }
+
+        h2 { font-weight: 600; margin: 5px 0; font-size: 22px; }
+        p { font-size: 13px; opacity: 0.7; margin-bottom: 25px; }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        #adBtn {
+            background: #kkkkk;
+            color: #000;
+        }
+
+        #adBtn:disabled {
+            background: #888;
+            cursor: not-allowed;
+        }
+
+        #downloadBtn {
+            background: #333;
+            color: #777;
+            cursor: not-allowed;
+        }
+
+        #downloadBtn.unlocked {
+            background: linear-gradient(45deg, #00f2fe 0%, #4facfe 100%);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+        }
+
+        #timerText {
+            font-size: 12px;
+            margin-top: 8px;
+            display: none;
+            color: #00f2fe;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <h2>BASSID APK + OBB PRO</h2>
+        <p>Click on the watch ad to unlock button below, wait 25 seconds, and then come back and click on download.</p>
+
+নিচের লেখাটি পড়ুন
+
+<p>নিচের watch ad to unlock বাটনে ক্লিক করে ২৫ সেকেন্ড ওয়েট করুন এবং ব্যাক এসে ডাউনলোড এ ক্লিক করুন।</p>
+        <button id="adBtn" class="btn" onclick="handleAdClick()">
+            <i class="fas fa-play-circle"></i> Watch Ad to Unlock
+        </button>
+        <div id="timerText">Unlocking in <span id="seconds"></span>s...</div>
+
+        <button id="downloadBtn" class="btn" disabled onclick="startDownload()">
+            <i id="lockIcon" class="fas fa-lock"></i> Download Free
+        </button>
+    </div>
+
+    <script>
+        const adsterraLink = "https://www.effectivegatecpm.com/vrwwcu9h7t?key=93d7c748b998da1781febd89e8081d4d"; // আপনার অ্যাড লিঙ্ক
+        const fileLink = "https://www.mediafire.com/file/a2ignmtiykwdm7m/BASSID_APK_%252B_OBB_Pro.apk/file"; // আপনার ফাইল লিঙ্ক
+
+        const adBtn = document.getElementById('adBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const timerText = document.getElementById('timerText');
+        const secondsSpan = document.getElementById('seconds');
+        const lockIcon = document.getElementById('lockIcon');
+
+        // পেজ লোড হওয়ার সময় চেক করবে আগে ক্লিক করা হয়েছিল কি না
+        window.onload = function() {
+            if (localStorage.getItem('isTimerRunning') === 'true') {
+                startCounting();
+            }
+        };
+
+        function handleAdClick() {
+            // নতুন ট্যাবে অ্যাড ওপেন হবে
+            window.open(adsterraLink, '_blank');
+
+            // লোকাল স্টোরেজে স্টেট সেভ করা
+            localStorage.setItem('isTimerRunning', 'true');
+            
+            startCounting();
+        }
+
+        function startCounting() {
+            adBtn.disabled = true;
+            adBtn.innerHTML = "Processing...";
+            timerText.style.display = "block";
+
+            let timeLeft = 25; // ২৫ সেকেন্ড সময়
+
+            let downloadTimer = setInterval(function() {
+                timeLeft--;
+                secondsSpan.innerText = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(downloadTimer);
+                    unlockDownload();
+                }
+            }, 1000);
+        }
+
+        function unlockDownload() {
+            localStorage.removeItem('isTimerRunning'); // কাজ শেষ, স্টেট ডিলিট
+            
+            timerText.innerHTML = "Success! Ready to Download.";
+            downloadBtn.disabled = false;
+            downloadBtn.classList.add('unlocked');
+            
+            lockIcon.classList.remove('fa-lock');
+            lockIcon.classList.add('fa-lock-open');
+            downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download Now';
+        }
+
+        function startDownload() {
+            if (!downloadBtn.disabled) {
+                window.location.href = fileLink;
+            }
+        }
+    </script>
+
+</body>
+</html>
